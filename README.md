@@ -14,6 +14,11 @@
 | first_name_kana    | string | null: false               |
 | birthday           | date   | null: false               |
 
+### Association
+- has_many :items
+- has_many :buys
+
+
 
 ## items テーブル
 
@@ -29,18 +34,27 @@
 | price              | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
 
+### Association
+- belongs_to :user
+- has_one :buy
 
-
-## comments テーブル
-
-| Column    | Type       | Options                        |
-| --------- | ---------- | ------------------------------ |
-| comment   | text       | null: false                    |
-| item      | references | null: false, foreign_key: true |
-| user      | references | null: false, foreign_key: true |
 
 
 ## buys テーブル
+
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| item               | references | null: false, foreign_key: true |
+| user               | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :user
+- belongs_to :item
+- has_one :delivery
+
+
+
+## deliverys テーブル
 
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
@@ -50,5 +64,7 @@
 | address            | string     | null: false                    |
 | building           | string     | null: true                     |
 | phonenumber        | string     | null: false                    |
-| item               | references | null: false, foreign_key: true |
-| user               | references | null: false, foreign_key: true |
+| buy                | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :buy
