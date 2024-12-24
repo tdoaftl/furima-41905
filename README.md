@@ -5,7 +5,7 @@
 
 | Column             | Type   | Options                   |
 | ------------------ | ------ | ------------------------- |
-| nickname           | string | null: false, unique: true |
+| nickname           | string | null: false               |
 | email              | string | null: false, unique: true |
 | encrypted_password | string | null: false               |
 | last_name          | string | null: false               |
@@ -29,7 +29,7 @@
 | category_id        | integer    | null: false                    |
 | condition_id       | integer    | null: false                    |
 | shipping_id        | integer    | null: false                    |
-| area_id            | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
 | day_id             | integer    | null: false                    |
 | price              | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
@@ -62,7 +62,7 @@
 | prefecture_id      | integer    | null: false                    |
 | city               | string     | null: false                    |
 | address            | string     | null: false                    |
-| building           | string     | null: true                     |
+| building           | string     |                                |
 | phonenumber        | string     | null: false                    |
 | buy                | references | null: false, foreign_key: true |
 
