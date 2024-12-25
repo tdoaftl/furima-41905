@@ -146,6 +146,12 @@ describe 'ユーザー新規登録' do
      @user.valid?
      expect(@user.errors.full_messages).to include('Password is invalid. Include both letters and numbers')
    end
+   it 'passwordが全角では登録できない' do
+    @user.password = '１２３ａｂｃ'
+    @user.password_confirmation = '１２３ａｂｃ'
+    @user.valid?
+    expect(@user.errors.full_messages).to include('Password is invalid. Include both letters and numbers')
+  end
    it 'passwordが129文字以上では登録できない' do
      @user.password = Faker::Internet.password(min_length: 129, max_length: 150)
      @user.password_confirmation = @user.password
