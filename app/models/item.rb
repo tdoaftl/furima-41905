@@ -8,13 +8,14 @@ class Item < ApplicationRecord
   belongs_to :day
   belongs_to :prefecture
 
+  validates :image,           presence: true
   validates :name,            presence: true
   validates :explain,         presence: true
-  validates :category_id,     numericality: { other_than: 1 } 
-  validates :condition_id,    presence: true
-  validates :shipping_id,     presence: true
-  validates :prefecture_id,   presence: true
-  validates :day_id,          presence: true
-  validates :price,           presence: true
-
+  validates :price,           presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
+  validates :category_id,     numericality: { other_than: 1 , message: "can't be blank"}
+  validates :condition_id,    numericality: { other_than: 1 , message: "can't be blank"}
+  validates :shipping_id,     numericality: { other_than: 1 , message: "can't be blank"}
+  validates :prefecture_id,   numericality: { other_than: 1 , message: "can't be blank"}
+  validates :day_id,          numericality: { other_than: 1 , message: "can't be blank"}
+  
 end
