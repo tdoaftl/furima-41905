@@ -50,8 +50,8 @@ end
   end
 
   def move_to_index
-    unless current_user == @item.user
-      redirect_to action: :index
+    if (current_user != @item.user) || (Buy.exists?(item_id: @item.id))
+      redirect_to root_path
     end
   end
 
