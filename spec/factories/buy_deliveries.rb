@@ -7,8 +7,6 @@ FactoryBot.define do
     address  { Faker::Lorem.sentence  }
     building  { Faker::Lorem.paragraph }
     phonenumber  { Faker::Number.between(from: 1000000000, to: 99999999999) }
-    user_id {99}
-    item_id{99}
 
   end
 end

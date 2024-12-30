@@ -1,7 +1,7 @@
 class BuyDelivery
   include ActiveModel::Model
 
-  attr_accessor :postcode, :prefecture_id, :city, :address, :building, :phonenumber, :item_id, :user_id, :price, :token
+  attr_accessor :postcode, :prefecture_id, :city, :address, :building, :phonenumber, :item_id, :user_id, :token
 
   with_options presence: true do
     validates :token

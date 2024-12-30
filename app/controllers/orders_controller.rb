@@ -11,8 +11,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    params[:buy_delivery][:price] = @item.price
-
     @buy_delivery = BuyDelivery.new(buy_params)
      if @buy_delivery.valid?
          pay_item
@@ -28,7 +26,7 @@ class OrdersController < ApplicationController
     private
     
     def buy_params
-        params.require(:buy_delivery).permit(:postcode, :prefecture_id, :city, :address,:building, :phonenumber, :price).merge(item_id: params[:item_id], user_id: current_user.id, token: params[:token])
+        params.require(:buy_delivery).permit(:postcode, :prefecture_id, :city, :address,:building, :phonenumber).merge(item_id: params[:item_id], user_id: current_user.id, token: params[:token])
     end
 
     def move_to_root_path  
@@ -44,7 +42,7 @@ class OrdersController < ApplicationController
     def pay_item
       Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
       Payjp::Charge.create(
-        amount: buy_params[:price],
+        amount: @item.price,
         card: buy_params[:token], 
         currency: 'jpy'
       )
